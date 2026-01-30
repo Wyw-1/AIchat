@@ -3,7 +3,7 @@
 </script>
 
 <template>
-主页
+编辑资料
 </template>
 
 <style scoped>

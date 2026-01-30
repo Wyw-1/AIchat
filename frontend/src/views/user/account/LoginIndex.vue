@@ -3,7 +3,7 @@
 </script>
 
 <template>
-主页
+登录组件
 </template>
 
 <style scoped>

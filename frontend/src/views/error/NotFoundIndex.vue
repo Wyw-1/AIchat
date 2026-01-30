@@ -3,7 +3,7 @@
 </script>
 
 <template>
-主页
+404
 </template>
 
 <style scoped>

@@ -3,7 +3,7 @@
 </script>
 
 <template>
-主页
+  注册
 </template>
 
 <style scoped>
