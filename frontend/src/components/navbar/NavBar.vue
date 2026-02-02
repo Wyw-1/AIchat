@@ -5,6 +5,11 @@ import HomepageIcon from "@/components/navbar/icons/HomepageIcon.vue";
 import FriendIcon from "@/components/navbar/icons/FriendIcon.vue";
 import CreateIcon from "@/components/navbar/icons/CreateIcon.vue";
 import SearchIcon from "@/components/navbar/icons/SearchIcon.vue";
+import {useUserStore} from "@/stores/user.js";
+import UserMenu from "@/components/navbar/UserMenu.vue";
+
+const user=useUserStore()
+
 </script>
 
 <template>
@@ -25,34 +30,37 @@ import SearchIcon from "@/components/navbar/icons/SearchIcon.vue";
               <SearchIcon/>
               搜索
             </button>
-
           </div>
         </div>
         <div class="navbar-end">
-          <RouterLink :to="{name:'user-account-login-index'}" active-class="btn-active" class="btn btn-neutral btn-outline">
+          <RouterLink v-if="user.isLogin()" :to="{name:'create-index'}" active-class="btn" class="btn btn-ghost text-base mr-6">
+            <CreateIcon/>
+              创作
+          </RouterLink>
+          <RouterLink v-if="!user.isLogin()" :to="{name:'user-account-login-index'}" active-class="btn-active" class="btn btn-neutral btn-outline">
             登录
           </RouterLink>
+          <UserMenu v-else/>
         </div>
-
       </nav>
       <slot></slot>
     </div>
 
     <div class="drawer-side is-drawer-close:overflow-visible">
       <label for="my-drawer-4" aria-label="close sidebar" class="drawer-overlay"></label>
-      <div class="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-15 is-drawer-open:w-64">
+      <div class="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-16 is-drawer-open:w-64">
         <ul class="menu w-full grow">
           <li>
             <RouterLink :to="{name:'homepage-index'}" active-class="menu-focus" class="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="首页">
-              <Homepage-icon/>
-              <span class="is-drawer-close:hidden test-base ml-2 py-1 whilespace-nowrap">首页</span>
+              <HomepageIcon/>
+              <span class="is-drawer-close:hidden text-base ml-2 py-1 whitespace-nowrap">首页</span>
             </RouterLink>
           </li>
 
           <li>
             <RouterLink :to="{name:'friend-index'}"  active-class="menu-focus" class=" is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="好友">
               <FriendIcon/>
-              <span class="is-drawer-close:hidden test-base ml-2 py-1 whilespace-nowrap">好友</span>
+              <span class="is-drawer-close:hidden text-base ml-2 py-1 whitespace-nowrap">好友</span>
             </RouterLink>
           </li>
 
@@ -60,7 +68,7 @@ import SearchIcon from "@/components/navbar/icons/SearchIcon.vue";
 <!--            routerlink通过点击创作按钮，跳转到创作页面。点击创作->修改url->到创作页面-->
             <RouterLink :to="{name:'create-index'}" active-class="menu-focus" class="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="创作">
               <CreateIcon/>
-              <span class="is-drawer-close:hidden test-base ml-2 py-1 whilespace-nowrap">创作</span>
+              <span class="is-drawer-close:hidden text-base ml-2 py-1 whitespace-nowrap">创作</span>
             </RouterLink>
           </li>
         </ul>
