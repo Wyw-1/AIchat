@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework_simplejwt.tokens import RefreshToken
 
 from web.models.user import UserProfile
 
@@ -18,7 +19,9 @@ class RegisterView(APIView):
                 return Response({
                     'result':'用户名已存在'
                 })
-            user=User.objects.get(username=username,password=password)
+
+            #user=User.objects.get(username=username,password=password),错了这一行导致无法创建成功
+            user = User.objects.create_user(username=username, password=password)
             user_profile = UserProfile.objects.create(user=user)
             refresh=RefreshToken.for_user(user)
             response = Response({
