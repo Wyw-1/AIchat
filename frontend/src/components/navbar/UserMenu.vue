@@ -25,7 +25,6 @@ async function handleLogout(){
     }
 
   }catch (err) {
-    console.log(err)
   }
 }
 
@@ -66,7 +65,7 @@ async function handleLogout(){
 
       <li>
         <a @click="handleLogout" class="text-sm font-bold py-3">
-          <UserLogoutIconIndex/>
+          <UserLogoutIcon/>
           退出登录
         </a>
       </li>
