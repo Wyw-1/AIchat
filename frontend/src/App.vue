@@ -31,10 +31,7 @@ onMounted(async()=>{
 <template>
   <NavBar>
     <RouterView/>
-
   </NavBar>
-
-
 </template>
 
 <style scoped>
