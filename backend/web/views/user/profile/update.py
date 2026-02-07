@@ -5,10 +5,10 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 
 from web.models.user import UserProfile
-from web.views.utils.photo import remove_old_photos
+from web.views.utils.photo import remove_old_photo
 
 
-class UpdateProfile(APIView):
+class UpdateProfileView(APIView):
     permission_classes = [IsAuthenticated]
     def post(self, request):
         try:
@@ -30,7 +30,7 @@ class UpdateProfile(APIView):
                     'result':'用户名已存在'
                 })
             if photo:
-                remove_old_photos(user_profile.photo)
+                remove_old_photo(user_profile.photo)
                 user_profile.photo=photo
             user_profile.profile=profile
             user_profile.update_time=now()
